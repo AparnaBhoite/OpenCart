@@ -1,27 +1,126 @@
 package stepdefinition;
 
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.en.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import pages.HeaderPage;
+import utility.ReadConfig;
 
 public class HeaderSteps {
 
-	@Given("I open the OpenCart demo website")
-	public void i_open_the_open_cart_demo_website() {
-	
-	}
-	
-	@Then("the header is displayed")
-	public void the_header_is_displayed() {
+	private WebDriver driver;
+	private HeaderPage Headpg;
 
+	@Given("^I open the OpenCart demo website$")
+	public void i_open_the_open_cart_demo_website() {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		ReadConfig configFile = new ReadConfig();
+		driver.get(configFile.getURL());
+		driver.manage().window().maximize();
+		Headpg = new HeaderPage(driver);
 	}
-//
-//	@When("I navigate to the header section")
-//	public void i_navigate_to_the_header_section() {
-//	  
+
+	@Then("^I should see the header section$")
+	public void I_should_see_the_header_section() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(Headpg.getHeader()));
+
+		boolean isheaderVisible = Headpg.isHeaderVisible();
+		if (!isheaderVisible) {
+			throw new AssertionError("Header is not visible");
+		} else {
+			System.out.println("Header is available");
+			driver.close();
+		}
+	}
+
+	@Then("the logo in the header should be aligned correctly")
+	public void the_logo_in_the_header_should_be_aligned_correctly() {
+		boolean isLogoVisible = Headpg.islogoVisible();
+		if (!isLogoVisible) {
+			throw new AssertionError("logo is not visible");
+		} else {
+			System.out.println("logo is available");
+		}
+
+		Headpg.getLogo();
+		driver.close();
+	}
+
+//	@Then("the navigation bar should be displayed correctly")
+//	public void the_navigation_bar_should_be_displayed_correctly() {
+//	    
 //	}
 //
-//	@Then("the logo should be visible")
-//	public void the_logo_should_be_visible() {
-//	
+//	@Then("the header should be sticky or fixed as per requirements and design")
+//	public void the_header_should_be_sticky_or_fixed_as_per_requirements_and_design() {
+//	   
+//	}
+//
+//	@Then("all links on the header should be present")
+//	public void all_links_on_the_header_should_be_present() {
+//	    
+//	}
+//
+//	@When("I click on a link in the header")
+//	public void i_click_on_a_link_in_the_header() {
+//	   
+//	}
+//
+//	@Then("the correct page should be opened")
+//	public void the_correct_page_should_be_opened() {
+//	   
+//	}
+//
+//	@When("I click on the logo in the header")
+//	public void i_click_on_the_logo_in_the_header() {
+//	    
+//	}
+//
+//	@Then("the home page should be opened")
+//	public void the_home_page_should_be_opened() {
+//	    
+//	}
+//
+//	@When("I hover over a link in the header")
+//	public void i_hover_over_a_link_in_the_header() {
+//	    
+//	}
+//
+//	@Then("the color of the link should change")
+//	public void the_color_of_the_link_should_change() {
+//	   
+//	}
+//
+//	@Then("there should be a search bar in the header")
+//	public void there_should_be_a_search_bar_in_the_header() {
+//	    
+//	}
+//
+//	@When("I hover or click on a dropdown in the header")
+//	public void i_hover_or_click_on_a_dropdown_in_the_header() {
+//	    
+//	}
+//
+//	@Then("the options should be displayed correctly")
+//	public void the_options_should_be_displayed_correctly() {
+//	    
+//	}
+//
+//	@Then("the currency selector should be displayed correctly")
+//	public void the_currency_selector_should_be_displayed_correctly() {
+//	   
+//	}
+//
+//	@Then("the header's background color should be as specified")
+//	public void the_header_s_background_color_should_be_as_specified() {
+//	   
 //	}
 
 }
