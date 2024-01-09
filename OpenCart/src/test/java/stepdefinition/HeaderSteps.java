@@ -48,7 +48,6 @@ public class HeaderSteps {
 		} else {
 			System.out.println("logo is available");
 		}
-
 		Headpg.getLogo();
 		driver.close();
 	}
