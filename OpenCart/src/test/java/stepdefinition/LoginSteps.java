@@ -13,8 +13,7 @@ public class LoginSteps {
 
 	@When("^the user selects the Login option$")
 	public void the_user_selects_the_login_option() {
-		loginpg.navigateToLoginPage();
-	
+		loginpg.navigateToLoginPage();	
 	}
 
 	@When("^User enters username (.+)$")

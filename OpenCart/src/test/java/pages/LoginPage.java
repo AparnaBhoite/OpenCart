@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class LoginPage {
+	
 	WebDriver driver;
 		
 	@FindBy (xpath = "//a[normalize-space()='Login']")

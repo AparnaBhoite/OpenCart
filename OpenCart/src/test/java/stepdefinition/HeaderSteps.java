@@ -1,8 +1,6 @@
 package stepdefinition;
 
-import java.time.Duration;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
@@ -26,26 +24,13 @@ public class HeaderSteps extends BaseClass {
 
 	@Then("^I should see the header section$")
 	public void I_should_see_the_header_section() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOf(Headpg.getHeader()));
-
-		boolean isheaderVisible = Headpg.isHeaderVisible();
-		if (!isheaderVisible) {
-			throw new AssertionError("Header is not visible");
-		} else {
-			System.out.println("Header is available");		
-		}
+		headPage.isHeaderVisible();
 	}
 
 	@Then("the logo in the header should be aligned correctly")
 	public void the_logo_in_the_header_should_be_aligned_correctly() {
-		boolean isLogoVisible = Headpg.islogoVisible();
-		if (!isLogoVisible) {
-			throw new AssertionError("logo is not visible");
-		} else {
-			System.out.println("logo is available");
-		}
-		Headpg.getLogo();
+		headPage.islogoVisible();
+		headPage.getLogo();
 	}
 
 //	@Then("the navigation bar should be displayed correctly")

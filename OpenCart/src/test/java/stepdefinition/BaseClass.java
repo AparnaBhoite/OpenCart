@@ -10,15 +10,19 @@ import utility.ReadConfig;
 public class BaseClass {
 
 	public WebDriver driver;
-	public HeaderPage Headpg;
+	public HeaderPage headPage;
 	public ReadConfig configFile;
+	
 
 	public void initializeWebDriver() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+		
+		configFile = new ReadConfig();
+		
 		driver.get(configFile.getURL());
 		driver.manage().window().maximize();
-		Headpg = new HeaderPage(driver);
+		headPage = new HeaderPage(driver);
 	}
 
 	public void closeWebDriver() {
