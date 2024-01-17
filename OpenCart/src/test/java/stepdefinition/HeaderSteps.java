@@ -3,14 +3,25 @@ package stepdefinition;
 import java.time.Duration;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
-
 public class HeaderSteps extends BaseClass {
+	
+	@Before
+	public void setUp() {
+		initializeWebDriver();
+	}
+
+	@After
+	public void tearDown() {
+		closeWebDriver();
+	}
 
 	@Given("^I open the OpenCart demo website$")
 	public void i_open_the_open_cart_demo_website() {
-		initializeWebDriver();		
+		// initializeWebDriver();
 	}
 
 	@Then("^I should see the header section$")
@@ -22,8 +33,7 @@ public class HeaderSteps extends BaseClass {
 		if (!isheaderVisible) {
 			throw new AssertionError("Header is not visible");
 		} else {
-			System.out.println("Header is available");
-			driver.close();
+			System.out.println("Header is available");		
 		}
 	}
 
@@ -36,7 +46,6 @@ public class HeaderSteps extends BaseClass {
 			System.out.println("logo is available");
 		}
 		Headpg.getLogo();
-		driver.close();
 	}
 
 //	@Then("the navigation bar should be displayed correctly")

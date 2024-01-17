@@ -22,6 +22,8 @@ public class HeaderPage {
 
 	public WebElement getHeader() {
 		return headerSection;
+		
+		
 	}
 
 	public boolean isHeaderVisible() {
