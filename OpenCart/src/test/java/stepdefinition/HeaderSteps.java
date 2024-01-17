@@ -1,29 +1,16 @@
 package stepdefinition;
 
 import java.time.Duration;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.en.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import pages.HeaderPage;
-import utility.ReadConfig;
 
-public class HeaderSteps {
 
-	private WebDriver driver;
-	private HeaderPage Headpg;
+public class HeaderSteps extends BaseClass {
 
 	@Given("^I open the OpenCart demo website$")
 	public void i_open_the_open_cart_demo_website() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		ReadConfig configFile = new ReadConfig();
-		driver.get(configFile.getURL());
-		driver.manage().window().maximize();
-		Headpg = new HeaderPage(driver);
+		initializeWebDriver();		
 	}
 
 	@Then("^I should see the header section$")
